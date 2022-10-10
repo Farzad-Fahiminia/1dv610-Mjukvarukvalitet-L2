@@ -4,11 +4,8 @@ body {
 	font-family: 'Poppins', sans-serif;
 	margin: 0;
 	padding: 0;
-	background-image: url("/img/bg.jpg");
-	background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-	color: #fff;
+  background-color: aquamarine;
+	color: #1d1d1d;
 	font-size: 16px;
 }
 
@@ -59,13 +56,4 @@ button:hover {
 	font-weight: 700;
 	text-align: center;
 	text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-#joke-title {
-	text-align: center;
-}
-
-#joke {
-	font-size: 18px;
-	text-align: center;
 }
