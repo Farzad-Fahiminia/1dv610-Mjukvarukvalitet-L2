@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
+/* ----- General structure ----- */
+
 html {
 	margin: 0;
 	padding: 0;
@@ -9,9 +11,19 @@ body {
 	font-family: 'Poppins', sans-serif;
 	margin: 0;
 	padding: 0;
-  background-color: rgb(215, 228, 226);
 	color: #1d1d1d;
 	font-size: 16px;
+ /* https://codepen.io/P1N2O/pen/pyBNzX */
+	background: linear-gradient(-45deg, rgb(238 119 82 / 50%), rgb(231 60 126 / 50%), rgb(35 166 213 / 50%), rgb(35 213 171 / 50%));
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+	/* https://codepen.io/P1N2O/pen/pyBNzX */
+	@keyframes gradient {
+	0% {background-position: 0% 50%;}
+	50% {background-position: 100% 50%;}
+	100% {background-position: 0% 50%;}
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -39,19 +51,23 @@ button {
 }
 
 button:hover {
-	background-color: #4566d1;
+	background-color: #0095FF;
 	color: #fff;
 }
 
+/* ----- Header ----- */
+
 .sidebar {
-	background-color: #fff;
-	max-width: 300px;
+	background-color: #1d1d1d;
+	max-width: 280px;
 	width: 100%;
 	height: 100%;
 	display: block;
 	position: fixed;
 	margin: 0;
-	padding: 10px;
+	margin-top: -30px;
+	padding: 20px;
+	color: #fff;
 	/* box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px; */
 }
 
@@ -68,16 +84,16 @@ button:hover {
 	margin-right: 20px;
 	height: 1.5em;
 	width: 1.5em;
-	background-image: url('../icons/house.svg');
 	background-position: center;
 	mask-size: 1.5em;
 	background-repeat: no-repeat;
-	background-color: #1d1d1d;
+	background-color: #0095FF;
     -webkit-mask-image: url('../icons/house.svg');
     mask-image: url('../icons/house.svg');
 }
 
-.menu-wrapper ul #home:hover::before {
+.menu-wrapper ul #home:hover::before,
+.menu-wrapper ul #home:focus::before {
 	background-color: #fff;
 }
 
@@ -90,16 +106,16 @@ button:hover {
 	margin-right: 20px;
 	height: 1.5em;
 	width: 1.5em;
-	background-image: url('../icons/cloud-sun.svg');
 	background-position: center;
 	mask-size: 1.5em;
 	background-repeat: no-repeat;
-	background-color: #1d1d1d;
+	background-color: #0095FF;
     -webkit-mask-image: url('../icons/cloud-sun.svg');
     mask-image: url('../icons/cloud-sun.svg');
 }
 
-.menu-wrapper ul #weather:hover::before {
+.menu-wrapper ul #weather:hover::before,
+.menu-wrapper ul #weather:focus::before {
 	background-color: #fff;
 }
 
@@ -112,16 +128,16 @@ button:hover {
 	margin-right: 20px;
 	height: 1.5em;
 	width: 1.5em;
-	background-image: url('../icons/calculator.svg');
 	background-position: center;
 	mask-size: 1.5em;
 	background-repeat: no-repeat;
-	background-color: #1d1d1d;
+	background-color: #0095FF;
     -webkit-mask-image: url('../icons/calculator.svg');
     mask-image: url('../icons/calculator.svg');
 }
 
-.menu-wrapper ul #something:hover::before {
+.menu-wrapper ul #something:hover::before,
+.menu-wrapper ul #something:focus::before {
 	background-color: #fff;
 }
 
@@ -138,7 +154,7 @@ button:hover {
 }
 
 .menu-wrapper a {
-	color: #1d1d1d;
+	color: #fff;
 	text-decoration: none;
 }
 
@@ -148,14 +164,16 @@ button:hover {
 }
 
 .menu-wrapper ul li {
+	background-color: #151515;
 	padding: 15px 5px;
 	border-radius: 5px;
 	transition: 0.3s;
-	color: #1d1d1d;
+	color: #fff;
 }
 
-.menu-wrapper ul li:hover {
-	background-color: #4566d1;
+.menu-wrapper ul li:hover,
+.menu-wrapper ul li:focus {
+	background-color: #0095FF;
 	color: #fff;
 }
 
@@ -163,12 +181,32 @@ button:hover {
 	color: #fff;
 } */
 
+/* ----- Contect ----- */
+
 .content {
 	max-width: 1200px;
-	margin-left: 320px;
-	padding: 10px 50px;
-	background-color: rgba(255, 255, 255, 0.35);
-	backdrop-filter: blur(10px);
-	/* box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-	text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+	margin-top: 30px;
+	margin-left: 350px;
+	/* padding: 10px 50px; */
+	/* background-color: rgba(255, 255, 255, 0.35);
+	backdrop-filter: blur(10px); */
+	box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+	/* text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+}
+
+/* ----- Footer ----- */
+footer {
+	padding: 15px 20px;
+	position: fixed;
+	width: 280px;
+	height: 25px;
+	background-color: #151515;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin-bottom: 0px;
+	font-size: 0.75em;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-align: center;
 }

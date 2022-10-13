@@ -4,5 +4,3 @@
  * @author Farzad Fahiminia <ff222cb@student.lnu.se>
  * @version 1.0.0
  */
-
-console.log('Hello World!')
