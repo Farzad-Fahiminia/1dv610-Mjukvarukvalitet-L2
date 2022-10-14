@@ -44,11 +44,12 @@ template.innerHTML = `
       color: #dadada;
      }
 
-     #convert-result {
+     #convert-result,
+     #convert-result-unit {
       font-size: 2.5em;
      }
 
-     .show-answer-button {
+     .convert-button {
        cursor: pointer;
        margin-top: 20px;
        background-color: #1d1d1d;
@@ -61,7 +62,7 @@ template.innerHTML = `
        border: none;
      }
 
-     .show-answer-button:hover {
+     .convert-button:hover {
       box-shadow: #1d1d1d 0 10px 40px -10px;
       -webkit-transition: all 0.3s;
        -o-transition: all 0.3s;
@@ -74,10 +75,10 @@ template.innerHTML = `
     <h1 id="headline">Convert temperature units!</h1>
      <div class ="my-custom-wrapper">
      <div class ="my-custom-converter">
-        <h2 id="convert-result"></h2>
+        <span id="convert-result"></span><span id="convert-result-unit"></span>
       </div>
       <form>
-        <input type="text" id="converter-name" name="converter-name" placeholder="Write a temperature" required/>
+        <input type="text" id="converter-name" name="converter-name" value="0" placeholder="Write a temperature" required/>
 
         <label for="unit" hidden>Choose what unit to convert:</label>
         <select name="unit" id="unit">
@@ -89,7 +90,7 @@ template.innerHTML = `
           <option value="kelvinToFahrenheit">Kelvin to Fahrenheit</option>
         </select>
 
-        <button class="show-answer-button">Convert</button>
+        <button class="convert-button">Convert</button>
       </form>
      </div>
    </div>
@@ -116,18 +117,18 @@ customElements.define('my-custom-converter-app',
         .appendChild(template.content.cloneNode(true))
 
       this.resultOutprint = this.shadowRoot.querySelector('#convert-result')
+      this.resultUnitOutprint = this.shadowRoot.querySelector('#convert-result-unit')
       this.chooseUnitToConvert = this.shadowRoot.querySelector('#unit')
       this.convertTextField = this.shadowRoot.querySelector('#converter-name')
-      this.showAnswerButton = this.shadowRoot.querySelector('.show-answer-button')
+      this.convertButton = this.shadowRoot.querySelector('.convert-button')
 
-      this.showAnswerButton.addEventListener('click', (event) => {
+      this.convertButton.addEventListener('click', (event) => {
         event.preventDefault()
         this.convertUnit()
       })
 
-      // this.resultOutprint.textContent = 'Syns jag?'
-
       this.convertUnit()
+      // this.resultOutprint.textContent = 'Syns jag?'
     }
 
     /**
@@ -138,18 +139,38 @@ customElements.define('my-custom-converter-app',
       try {
         console.log('CONVERT', this.converter.kelvinToFahrenheit(Number(this.convertTextField.value)))
 
+        // const span = document.createElement('span')
+        const celsiusUnit = ' <span>&#8451;</span>'
+        const fahrenheitUnit = ' <span>&#8457;</span>'
+        const kelvinUnit = ' <span>&#8490;</span>'
+        // span.append(celsius)
+        this.resultOutprint.innerHTML = ''
+        this.resultUnitOutprint.innerHTML = ''
+
         if (this.chooseUnitToConvert.value === 'celsiusToFahrenheit') {
-          this.resultOutprint.textContent = this.converter.celsiusToFahrenheit(Number(this.convertTextField.value))
+          this.resultOutprint.append(this.converter.celsiusToFahrenheit(Number(this.convertTextField.value)))
+
+          this.resultUnitOutprint.innerHTML = fahrenheitUnit
         } else if (this.chooseUnitToConvert.value === 'celsiusToKelvin') {
           this.resultOutprint.textContent = this.converter.celsiusToKelvin(Number(this.convertTextField.value))
-        } else if (this.chooseUnitToConvert.value === 'farenheitToCelsius') {
+
+          this.resultUnitOutprint.innerHTML = kelvinUnit
+        } else if (this.chooseUnitToConvert.value === 'fahrenheitToCelsius') {
           this.resultOutprint.textContent = this.converter.fahrenheitToCelsius(Number(this.convertTextField.value))
+
+          this.resultUnitOutprint.innerHTML = celsiusUnit
         } else if (this.chooseUnitToConvert.value === 'fahrenheitToKelvin') {
           this.resultOutprint.textContent = this.converter.fahrenheitToKelvin(Number(this.convertTextField.value))
+
+          this.resultUnitOutprint.innerHTML = kelvinUnit
         } else if (this.chooseUnitToConvert.value === 'kelvinToCelsius') {
           this.resultOutprint.textContent = this.converter.kelvinToCelsius(Number(this.convertTextField.value))
+
+          this.resultUnitOutprint.innerHTML = celsiusUnit
         } else {
           this.resultOutprint.textContent = this.converter.kelvinToFahrenheit(Number(this.convertTextField.value))
+
+          this.resultUnitOutprint.innerHTML = fahrenheitUnit
         }
       } catch (error) {
         this.resultOutprint.textContent = 'Something went wrong... try again!'
