@@ -163,7 +163,7 @@ customElements.define('my-custom-weather-app',
         this.latitudeLongitude.textContent = `Latitude: ${data.city.coord.lat}, Longitude: ${data.city.coord.lon}`
         this.weatherImg.src = this.weatherUrlImg + data.list[0].weather[0].icon + '@2x.png'
         this.description.textContent = `Description: ${data.list[0].weather[0].description}`
-        this.temperature.textContent = `Temperature: ${this.converter.kelvinToCelsius(data.list[0].main.temp)} Celsius, ${this.converter.kelvinToFarenheit(data.list[0].main.temp)} Farenheit, ${data.list[0].main.temp} Kelvin`
+        this.temperature.textContent = `Temperature: ${this.converter.kelvinToCelsius(data.list[0].main.temp)} Celsius, ${this.converter.kelvinToFahrenheit(data.list[0].main.temp)} Fahrenheit, ${data.list[0].main.temp} Kelvin`
       } catch (error) {
         console.log(error)
         console.log(data.message)
