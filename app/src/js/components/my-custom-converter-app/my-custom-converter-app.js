@@ -32,7 +32,8 @@ template.innerHTML = `
        font-size: 1.2em;
      }
 
-     input {
+     input,
+     select {
        padding: 15px;
        border-radius: 5px;
        border: solid 1px #1d1d1d;
@@ -76,6 +77,18 @@ template.innerHTML = `
         <h2 id="convert-result"></h2>
       </div>
       <form>
+
+        <label for="unit">Choose what unit to convert:</label><br>
+
+        <select name="unit" id="unit">
+          <option value="celsiusToFarenheit">Celsius to Farenheit</option>
+          <option value="celsiusToKelvin">Celsius to Kelvin</option>
+          <option value="farenheitToCelsius">Farenheit to Celsius</option>
+          <option value="farenheitToKelvin">Farenheit to Kelvin</option>
+          <option value="kelvinToCelsius">Kelvin to Celsius</option>
+          <option value="kelvinToFarenheit">Kelvin to Farenheit</option>
+        </select><br>
+
         <input type="text" id="converter-name" name="converter-name" placeholder="Convert something" required/>
         <button class="show-answer-button">Convert</button>
       </form>
@@ -104,6 +117,7 @@ customElements.define('my-custom-converter-app',
         .appendChild(template.content.cloneNode(true))
 
       this.resultOutprint = this.shadowRoot.querySelector('#convert-result')
+      this.chooseUnitToConvert = this.shadowRoot.querySelector('#unit')
       this.convertTextField = this.shadowRoot.querySelector('#converter-name')
       this.showAnswerButton = this.shadowRoot.querySelector('.show-answer-button')
 
@@ -124,9 +138,20 @@ customElements.define('my-custom-converter-app',
     convertUnit () {
       try {
         console.log('CONVERT', this.converter.kelvinToFarenheit(Number(this.convertTextField.value)))
-        this.resultOutprint.textContent = this.converter.celsiusToFahrenheit(Number(this.convertTextField.value))
 
-      // this.converter.celsiusToFahrenheit(Number(this.convertTextField.value))
+        if (this.chooseUnitToConvert.value === 'celsiusToFarenheit') {
+          this.resultOutprint.textContent = this.converter.celsiusToFahrenheit(Number(this.convertTextField.value))
+        } else if (this.chooseUnitToConvert.value === 'celsiusToKelvin') {
+          this.resultOutprint.textContent = this.converter.celsiusToKelvin(Number(this.convertTextField.value))
+        } else if (this.chooseUnitToConvert.value === 'farenheitToCelsius') {
+          this.resultOutprint.textContent = this.converter.farenheitToCelsius(Number(this.convertTextField.value))
+        } else if (this.chooseUnitToConvert.value === 'farenheitToKelvin') {
+          this.resultOutprint.textContent = this.converter.farenheitToKelvin(Number(this.convertTextField.value))
+        } else if (this.chooseUnitToConvert.value === 'kelvinToCelsius') {
+          this.resultOutprint.textContent = this.converter.kelvinToCelsius(Number(this.convertTextField.value))
+        } else {
+          this.resultOutprint.textContent = this.converter.kelvinToFahrenheit(Number(this.convertTextField.value))
+        }
       } catch (error) {
         this.resultOutprint.textContent = 'Something went wrong... try again later!'
       }
