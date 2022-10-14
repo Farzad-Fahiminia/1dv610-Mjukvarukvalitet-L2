@@ -5,6 +5,10 @@
 html {
 	margin: 0;
 	padding: 0;
+	background-image: url('../img/bg.jpg');
+	background-position: initial;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 body {
@@ -14,17 +18,17 @@ body {
 	color: #1d1d1d;
 	font-size: 16px;
  /* https://codepen.io/P1N2O/pen/pyBNzX */
-	background: linear-gradient(-45deg, rgb(238 119 82 / 50%), rgb(231 60 126 / 50%), rgb(35 166 213 / 50%), rgb(35 213 171 / 50%));
+	/* background: linear-gradient(-45deg, rgb(238 119 82 / 50%), rgb(231 60 126 / 50%), rgb(35 166 213 / 50%), rgb(35 213 171 / 50%));
 	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
+	animation: gradient 15s ease infinite; */
 }
 
 	/* https://codepen.io/P1N2O/pen/pyBNzX */
-	@keyframes gradient {
+/* @keyframes gradient {
 	0% {background-position: 0% 50%;}
 	50% {background-position: 100% 50%;}
 	100% {background-position: 0% 50%;}
-}
+} */
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 700;
@@ -190,22 +194,20 @@ button:hover {
 	/* padding: 10px 50px; */
 	/* background-color: rgba(255, 255, 255, 0.35);
 	backdrop-filter: blur(10px); */
-	box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-	/* text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+	/* box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px; */
 }
 
 /* ----- Footer ----- */
 footer {
-	padding: 15px 20px;
+	padding: 25px 20px;
 	position: fixed;
 	width: 280px;
-	height: 25px;
 	background-color: #151515;
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
 	margin-bottom: 0px;
-	font-size: 0.75em;
+	font-size: 0.7em;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	text-align: center;

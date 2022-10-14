@@ -42,6 +42,24 @@ template.innerHTML = `
        font-size: 1em;
      }
 
+     #headline {
+      color: #dadada;
+     }
+
+     #location {
+      font-size: 2.5em;
+      margin-top: -30px;
+      margin-bottom: -20px;
+     }
+
+     #latitude-longitude {
+      font-size: 0.8em;
+     }
+
+     #weather-img {
+      filter: drop-shadow(0 0 0.5rem #bababa);
+     }
+
      .show-answer-button {
        cursor: pointer;
        margin-top: 20px;
@@ -65,18 +83,19 @@ template.innerHTML = `
    </style>
 
    <div class="container">
-    <h1>How's the weather today?</h1>
+    <h1 id="headline">How's the weather today?</h1>
      <div class ="my-custom-wrapper">
-     <div class ="my-custom-question">
+     <div class ="my-custom-weather">
         <h2 id="location"></h2>
         <!-- <div id="weather-img"></div> -->
-        <img src="http://openweathermap.org/img/wn/10d@2x.png" id="weather-img"> 
         <p id="latitude-longitude"></p>
+        <img src="http://openweathermap.org/img/wn/10d@2x.png" id="weather-img"> 
+        <p id="description"></p>
         <p id="temperature"></p>
       </div>
       <form>
-        <input type="text" id="location-name" name="location-name" size="30" placeholder="Write a city" value="Stockholm" required autofocus/>
-        <button class="show-answer-button">Search</button>
+        <input type="text" id="location-name" name="location-name" placeholder="Write a city" value="Stockholm" required autofocus/>
+        <button class="show-answer-button">Search weather</button>
       </form>
      </div>
    </div>
@@ -105,6 +124,7 @@ customElements.define('my-custom-app',
       this.weatherImg = this.shadowRoot.querySelector('#weather-img')
       this.locationOutprint = this.shadowRoot.querySelector('#location')
       this.latitudeLongitude = this.shadowRoot.querySelector('#latitude-longitude')
+      this.description = this.shadowRoot.querySelector('#description')
       this.temperature = this.shadowRoot.querySelector('#temperature')
       this.showAnswerButton = this.shadowRoot.querySelector('.show-answer-button')
 
@@ -140,16 +160,18 @@ customElements.define('my-custom-app',
         console.log(this.locationTextField.value)
         console.log(converter.kelvinToCelsius(Number(data.list[0].main.temp)))
         console.log(this.weatherUrlImg + data.list[0].weather[0].icon)
+
         this.locationOutprint.textContent = data.city.name
+        this.latitudeLongitude.textContent = `Latitude: ${data.city.coord.lat}, Longitude: ${data.city.coord.lon}`
         this.weatherImg.src = this.weatherUrlImg + data.list[0].weather[0].icon + '@2x.png'
-        this.latitudeLongitude.textContent = `Coordinates: Latitude: ${data.city.coord.lat}, Longitude: ${data.city.coord.lon}`
+        this.description.textContent = `Description: ${data.list[0].weather[0].description}`
         this.temperature.textContent = `Temperature: ${converter.kelvinToCelsius(data.list[0].main.temp)} Celsius, ${converter.kelvinToFarenheit(data.list[0].main.temp)} Farenheit, ${data.list[0].main.temp} Kelvin`
       } catch (error) {
         console.log(error)
         console.log(data.message)
         if (data.cod === '404') {
           this.locationOutprint.textContent = data.message
-          this.latitudeLongitude.textContent = 'Coordinates: Where am I?'
+          this.latitudeLongitude.textContent = 'Where am I?'
           this.temperature.textContent = 'Temperature: ?'
         } else {
           this.temperature.textContent = 'Something went wrong... try again later!'
