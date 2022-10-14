@@ -65,15 +65,17 @@ template.innerHTML = `
    </style>
 
    <div class="container">
-    <h1>How's the weather?</h1>
+    <h1>How's the weather today?</h1>
      <div class ="my-custom-wrapper">
      <div class ="my-custom-question">
         <h2 id="location"></h2>
+        <!-- <div id="weather-img"></div> -->
+        <img src="http://openweathermap.org/img/wn/10d@2x.png" id="weather-img"> 
         <p id="latitude-longitude"></p>
         <p id="temperature"></p>
       </div>
       <form>
-        <input type="text" id="location-name" name="location-name" size="30" value="Stockholm" required autofocus/>
+        <input type="text" id="location-name" name="location-name" size="30" placeholder="Write a city" value="Stockholm" required autofocus/>
         <button class="show-answer-button">Search</button>
       </form>
      </div>
@@ -100,6 +102,7 @@ customElements.define('my-custom-app',
         .appendChild(template.content.cloneNode(true))
 
       this.locationTextField = this.shadowRoot.querySelector('#location-name')
+      this.weatherImg = this.shadowRoot.querySelector('#weather-img')
       this.locationOutprint = this.shadowRoot.querySelector('#location')
       this.latitudeLongitude = this.shadowRoot.querySelector('#latitude-longitude')
       this.temperature = this.shadowRoot.querySelector('#temperature')
@@ -111,6 +114,8 @@ customElements.define('my-custom-app',
       })
 
       this.api_key = 'a6533ce007aa11cf448d02673c8c8a8f'
+      this.weatherUrlImg = 'http://openweathermap.org/img/wn/'
+      // this.weatherImg = '10d@2x.png'
 
       this.getWeather()
     }
@@ -133,12 +138,14 @@ customElements.define('my-custom-app',
         console.log(data)
         console.log(data.list[0].main.temp)
         console.log(this.locationTextField.value)
-        // console.log(data.cod)
+        console.log(converter.kelvinToCelsius(Number(data.list[0].main.temp)))
+        console.log(this.weatherUrlImg + data.list[0].weather[0].icon)
         this.locationOutprint.textContent = data.city.name
+        this.weatherImg.src = this.weatherUrlImg + data.list[0].weather[0].icon + '@2x.png'
         this.latitudeLongitude.textContent = `Coordinates: Latitude: ${data.city.coord.lat}, Longitude: ${data.city.coord.lon}`
-        this.temperature.textContent = `Temperature: ${data.list[0].main.temp} Kelvin`
+        this.temperature.textContent = `Temperature: ${converter.kelvinToCelsius(data.list[0].main.temp)} Celsius, ${converter.kelvinToFarenheit(data.list[0].main.temp)} Farenheit, ${data.list[0].main.temp} Kelvin`
       } catch (error) {
-        // console.log(error)
+        console.log(error)
         console.log(data.message)
         if (data.cod === '404') {
           this.locationOutprint.textContent = data.message
