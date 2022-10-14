@@ -104,7 +104,7 @@ template.innerHTML = `
 /**
  * Define custom element.
  */
-customElements.define('my-custom-app',
+customElements.define('my-custom-weather-app',
   /**
    *
    */
