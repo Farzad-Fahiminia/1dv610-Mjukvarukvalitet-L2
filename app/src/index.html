@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="./css/styles.css" />
   <script type="module" src="./js/components/my-custom-weather-app/index.js"></script>
+  <script type="module" src="./js/components/my-custom-converter-app/index.js"></script>
   <script type="module" src="./js/index.js"></script>
   <title>The Weather App</title>
 </head>
@@ -16,16 +17,22 @@
     <div class="menu-wrapper">
       <p id="menu-title">Main Menu</p>
       <ul>
-        <a href="#weather" id="weather"><li>Weather</li></a>
         <a href="#home" id="home"><li>Home</li></a>
-        <a href="#something" id="something"><li>Something</li></a>
+        <a href="#weather" id="weather"><li>Weather</li></a>
+        <a href="#converter" id="converter"><li>Unit Converter</li></a>
+        <a href="#calculator" id="calculator"><li>Calculator</li></a>
       </ul>
     </div>
     <footer>© Developed by Farzad Fahiminia</footer>
   </div>
 
   <div class="content">
-    <my-custom-weather-app id="weather"></my-custom-weather-app>
+    <div class="weather-element">
+      <my-custom-weather-app id="weather"></my-custom-weather-app>
+    </div>
+    <div class="converter-element">
+      <my-custom-converter-app id="converter"></my-custom-converter-app>
+    </div>
   </div>
   
 </body>

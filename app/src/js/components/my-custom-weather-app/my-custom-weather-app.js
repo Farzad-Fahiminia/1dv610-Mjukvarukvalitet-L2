@@ -5,10 +5,7 @@
  * @version 1.0.0
  */
 
-//  import { ConverterHandler } from '../../../../energy-price-module/src/converterHandler'
 import { Converter } from '../../../../../unit-converter-module/src/converter'
-
-const converter = new Converter()
 
 /**
  * Define template.
@@ -114,6 +111,7 @@ customElements.define('my-custom-weather-app',
      */
     constructor () {
       super()
+      this.converter = new Converter()
 
       // Attach a shadow DOM tree to this element and
       // append the template to the shadow root.
@@ -155,17 +153,17 @@ customElements.define('my-custom-weather-app',
           }
         })
         data = await data.json()
-        console.log(data)
-        console.log(data.list[0].main.temp)
-        console.log(this.locationTextField.value)
-        console.log(converter.kelvinToCelsius(Number(data.list[0].main.temp)))
-        console.log(this.weatherUrlImg + data.list[0].weather[0].icon)
+        // console.log(data)
+        // console.log(data.list[0].main.temp)
+        // console.log(this.locationTextField.value)
+        // console.log(converter.kelvinToCelsius(Number(data.list[0].main.temp)))
+        // console.log(this.weatherUrlImg + data.list[0].weather[0].icon)
 
         this.locationOutprint.textContent = data.city.name
         this.latitudeLongitude.textContent = `Latitude: ${data.city.coord.lat}, Longitude: ${data.city.coord.lon}`
         this.weatherImg.src = this.weatherUrlImg + data.list[0].weather[0].icon + '@2x.png'
         this.description.textContent = `Description: ${data.list[0].weather[0].description}`
-        this.temperature.textContent = `Temperature: ${converter.kelvinToCelsius(data.list[0].main.temp)} Celsius, ${converter.kelvinToFarenheit(data.list[0].main.temp)} Farenheit, ${data.list[0].main.temp} Kelvin`
+        this.temperature.textContent = `Temperature: ${this.converter.kelvinToCelsius(data.list[0].main.temp)} Celsius, ${this.converter.kelvinToFarenheit(data.list[0].main.temp)} Farenheit, ${data.list[0].main.temp} Kelvin`
       } catch (error) {
         console.log(error)
         console.log(data.message)
