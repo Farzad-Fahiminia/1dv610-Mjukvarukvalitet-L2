@@ -84,14 +84,13 @@ template.innerHTML = `
      <div class ="my-custom-wrapper">
      <div class ="my-custom-weather">
         <h2 id="location"></h2>
-        <!-- <div id="weather-img"></div> -->
         <p id="latitude-longitude"></p>
         <img src="http://openweathermap.org/img/wn/10d@2x.png" id="weather-img"> 
         <p id="description"></p>
         <p id="temperature"></p>
       </div>
       <form>
-        <input type="text" id="location-name" name="location-name" placeholder="Write a city" value="Stockholm" required autofocus/>
+        <input type="text" id="location-name" name="location-name" placeholder="Write a city" value="Stockholm" required/>
         <button class="show-answer-button">Search weather</button>
       </form>
      </div>
@@ -170,6 +169,7 @@ customElements.define('my-custom-weather-app',
         if (data.cod === '404') {
           this.locationOutprint.textContent = data.message
           this.latitudeLongitude.textContent = 'Where am I?'
+          this.description.textContent = 'Description: ?'
           this.temperature.textContent = 'Temperature: ?'
         } else {
           this.temperature.textContent = 'Something went wrong... try again later!'

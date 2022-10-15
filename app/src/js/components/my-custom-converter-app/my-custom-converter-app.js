@@ -78,7 +78,7 @@ template.innerHTML = `
         <span id="convert-result"></span><span id="convert-result-unit"></span>
       </div>
       <form>
-        <input type="text" id="converter-name" name="converter-name" value="0" placeholder="Write a temperature" required/>
+        <input type="text" id="converter-name" name="converter-name" value="15" placeholder="Write a temperature" required/>
 
         <label for="unit" hidden>Choose what unit to convert:</label>
         <select name="unit" id="unit">
@@ -126,9 +126,6 @@ customElements.define('my-custom-converter-app',
         event.preventDefault()
         this.convertUnit()
       })
-
-      this.convertUnit()
-      // this.resultOutprint.textContent = 'Syns jag?'
     }
 
     /**
@@ -137,15 +134,19 @@ customElements.define('my-custom-converter-app',
      */
     convertUnit () {
       try {
-        console.log('CONVERT', this.converter.kelvinToFahrenheit(Number(this.convertTextField.value)))
+        // console.log('CONVERT', this.converter.kelvinToFahrenheit(Number(this.convertTextField.value)))
+        console.log(this.convertTextField.value.length)
 
-        // const span = document.createElement('span')
         const celsiusUnit = ' <span>&#8451;</span>'
         const fahrenheitUnit = ' <span>&#8457;</span>'
         const kelvinUnit = ' <span>&#8490;</span>'
-        // span.append(celsius)
+
         this.resultOutprint.innerHTML = ''
         this.resultUnitOutprint.innerHTML = ''
+
+        if (this.convertTextField.value.length === 0) {
+          throw Error()
+        }
 
         if (this.chooseUnitToConvert.value === 'celsiusToFahrenheit') {
           this.resultOutprint.append(this.converter.celsiusToFahrenheit(Number(this.convertTextField.value)))
@@ -173,7 +174,11 @@ customElements.define('my-custom-converter-app',
           this.resultUnitOutprint.innerHTML = fahrenheitUnit
         }
       } catch (error) {
-        this.resultOutprint.textContent = 'Something went wrong... try again!'
+        if (this.convertTextField.value.length === 0) {
+          this.resultOutprint.textContent = 'Please enter a number in the field.'
+        } else {
+          this.resultOutprint.textContent = 'Something went wrong... try again!'
+        }
       }
     }
   }
