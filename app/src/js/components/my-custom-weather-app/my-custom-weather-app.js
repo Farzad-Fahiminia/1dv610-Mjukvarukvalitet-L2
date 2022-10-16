@@ -17,19 +17,13 @@ template.innerHTML = `
        background-color: #ffffff;
        padding: 20px 50px 50px 50px;
        border-radius: 10px;
-       max-width: 1200px;
+       max-width: 1000px;
        font-size: 1em;
        color: #1d1d1d;
      }
 
      .my-custom-wrapper {
        position: relative;
-     }
-
-     .my-custom-question {
-       width: 100%;
-       top: 32%;
-       font-size: 1.2em;
      }
 
      input {
@@ -87,7 +81,7 @@ template.innerHTML = `
         <p id="latitude-longitude"></p>
         <img src="http://openweathermap.org/img/wn/10d@2x.png" id="weather-img"> 
         <p id="description"></p>
-        <p id="temperature"></p>
+        <div id="temperature"></div>
       </div>
       <form>
         <input type="text" id="location-name" name="location-name" placeholder="Write a city" value="Stockholm" required/>
@@ -155,7 +149,6 @@ customElements.define('my-custom-weather-app',
         // console.log(data)
         // console.log(data.list[0].main.temp)
         // console.log(this.locationTextField.value)
-        // console.log(converter.kelvinToCelsius(Number(data.list[0].main.temp)))
         // console.log(this.weatherUrlImg + data.list[0].weather[0].icon)
 
         this.locationOutprint.textContent = data.city.name
@@ -163,11 +156,13 @@ customElements.define('my-custom-weather-app',
         this.weatherImg.src = this.weatherUrlImg + data.list[0].weather[0].icon + '@2x.png'
         this.description.textContent = `Description: ${data.list[0].weather[0].description}`
         this.temperature.textContent = `Temperature: ${this.converter.kelvinToCelsius(data.list[0].main.temp)} Celsius, ${this.converter.kelvinToFahrenheit(data.list[0].main.temp)} Fahrenheit, ${data.list[0].main.temp} Kelvin`
+
+        this.temperature.append()
       } catch (error) {
         console.log(error)
         console.log(data.message)
-        if (data.cod === '404') {
-          this.locationOutprint.textContent = data.message
+        if (data.cod === '404' || data.cod === '400') {
+          this.locationOutprint.textContent = 'City not found'
           this.latitudeLongitude.textContent = 'Where am I?'
           this.description.textContent = 'Description: ?'
           this.temperature.textContent = 'Temperature: ?'

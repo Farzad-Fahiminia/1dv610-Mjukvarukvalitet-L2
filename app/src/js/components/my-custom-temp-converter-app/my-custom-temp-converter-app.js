@@ -17,19 +17,13 @@ template.innerHTML = `
        background-color: #ffffff;
        padding: 20px 50px 50px 50px;
        border-radius: 10px;
-       max-width: 1200px;
+       max-width: 1000px;
        font-size: 1em;
        color: #1d1d1d;
      }
 
      .my-custom-wrapper {
        position: relative;
-     }
-
-     .my-custom-question {
-       width: 100%;
-       top: 32%;
-       font-size: 1.2em;
      }
 
      input,
@@ -126,6 +120,8 @@ customElements.define('my-custom-converter-app',
         event.preventDefault()
         this.convertUnit()
       })
+
+      this.convertUnit()
     }
 
     /**

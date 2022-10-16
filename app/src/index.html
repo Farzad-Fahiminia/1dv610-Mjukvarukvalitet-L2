@@ -5,8 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="./css/styles.css" />
-  <script type="module" src="./js/components/my-custom-weather-app/index.js"></script>
-  <script type="module" src="./js/components/my-custom-converter-app/index.js"></script>
+  <script type="module" src="./js/components/my-custom-window-app/index.js"></script>
+  <!-- <script type="module" src="./js/components/my-custom-weather-app/index.js"></script>
+  <script type="module" src="./js/components/my-custom-converter-app/index.js"></script> -->
   <script type="module" src="./js/index.js"></script>
   <title>The Weather App</title>
 </head>
@@ -17,21 +18,18 @@
     <div class="menu-wrapper">
       <p id="menu-title">Main Menu</p>
       <ul>
-        <a href="#home" id="home"><li>Home</li></a>
-        <a href="#weather" id="weather"><li>Weather</li></a>
-        <a href="#converter" id="converter"><li>Unit Converter</li></a>
-        <a href="#calculator" id="calculator"><li>Calculator</li></a>
+        <a href="#home" id="home"><li id="home-li">Home</li></a>
+        <a href="#weather" id="weather"><li id="weather-li">Weather</li></a>
+        <a href="#converter" id="converter"><li id="converter-li">Temperature Converter</li></a>
+        <a href="#calculator" id="calculator"><li id="calculator-li">Calculator</li></a>
       </ul>
     </div>
     <footer>© Developed by Farzad Fahiminia</footer>
   </div>
 
   <div class="content">
-    <div class="weather-element">
-      <my-custom-weather-app id="weather"></my-custom-weather-app>
-    </div>
-    <div class="converter-element">
-      <my-custom-converter-app id="converter"></my-custom-converter-app>
+    <div class="window-element">
+      <my-custom-window-app></my-custom-window-app>
     </div>
   </div>
   
