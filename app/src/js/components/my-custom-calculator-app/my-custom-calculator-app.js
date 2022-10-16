@@ -67,7 +67,7 @@ template.innerHTML = `
    </style>
 
    <div class="container">
-    <h1 id="headline">Convert temperature units!</h1>
+    <h1 id="headline">Calculate</h1>
      <div class ="my-custom-wrapper">
      <div class ="my-custom-converter">
         <span id="convert-result"></span><span id="convert-result-unit"></span>
@@ -85,7 +85,7 @@ template.innerHTML = `
           <option value="kelvinToFahrenheit">Kelvin to Fahrenheit</option>
         </select>
 
-        <button class="convert-button">Convert</button>
+        <button class="convert-button">Calculate</button>
       </form>
      </div>
    </div>
