@@ -5,10 +5,6 @@
  * @version 1.0.0
  */
 
-import '../my-custom-home-app/index.js'
-import '../my-custom-weather-app/index.js'
-import '../my-custom-temp-converter-app/index.js'
-
 /**
  * Define template.
  */
@@ -16,43 +12,35 @@ const template = document.createElement('template')
 template.innerHTML = `
    <style>
      .container {
-      /* background-color: #1d1d1d; */
-      width: 100%;
-      height: 500px;
+       /* background-color: #ffffff;
+       max-width: 1000px;
+       font-size: 1em;
+       color: #1d1d1d; */
+       /* background-color: #ffffff1f; */
+       /* backdrop-filter: blur(10px); */
+       padding: 20px 20px 0.5px 20px;
+       border-radius: 5px;
+       /* box-shadow: rgba(255, 255, 255, 0.3) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.45) 0px 50px 100px -20px, rgba(0, 0, 0, 0.7) 0px 30px 60px -30px; */
      }
 
-     .weather-element,
-     .converter-element {
-      display: none;
+     #home-title {
+      margin-top: 30px;
+      font-size: 10em;
+      line-height: 0.9em;
+      color: #fff;
      }
-
-     .home-element,
-     .weather-element,
-     .converter-element {
-        margin-bottom: 30px;
-      }
 
    </style>
 
    <div class="container">
-
-    <div class="home-element">
-      <my-custom-home-app id="home"></my-custom-home-app>
-    </div>
-    <div class="weather-element">
-      <my-custom-weather-app id="weather"></my-custom-weather-app>
-    </div>
-    <div class="converter-element">
-      <my-custom-converter-app id="converter"></my-custom-converter-app>
-    </div>
-
+    <h1 id="home-title">Welcome<br>to the <i>weather</i><br>application</h1>
    </div>
  `
 
 /**
  * Define custom element.
  */
-customElements.define('my-custom-window-app',
+customElements.define('my-custom-home-app',
   /**
    *
    */
@@ -68,25 +56,14 @@ customElements.define('my-custom-window-app',
       this.attachShadow({ mode: 'open' })
         .appendChild(template.content.cloneNode(true))
 
-      this.homeApp = document.querySelector('#home')
       this.weatherApp = document.querySelector('#weather')
       this.unitConverterApp = document.querySelector('#converter')
 
-      this.homeLiElement = document.querySelector('#home-li')
       this.weatherLiElement = document.querySelector('#weather-li')
       this.unitConverterLiElement = document.querySelector('#converter-li')
 
-      this.homeElement = this.shadowRoot.querySelector('.home-element')
       this.weatherElement = this.shadowRoot.querySelector('.weather-element')
       this.unitConverterElement = this.shadowRoot.querySelector('.converter-element')
-
-      this.homeApp.addEventListener('click', (event) => {
-        event.preventDefault()
-        this.homeWindow()
-        console.log('Click on home')
-        // this.unitConverterElement.style.display = 'none'
-        // this.weatherElement.style.display = 'block'
-      })
 
       this.weatherApp.addEventListener('click', (event) => {
         event.preventDefault()
@@ -112,31 +89,11 @@ customElements.define('my-custom-window-app',
      * Window for application.
      *
      */
-    homeWindow () {
-      try {
-        this.homeElement.style.display = 'block'
-        this.weatherElement.style.display = 'none'
-        this.unitConverterElement.style.display = 'none'
-
-        this.weatherLiElement.classList.add('isActive')
-        this.weatherLiElement.classList.remove('isActive')
-        this.unitConverterLiElement.classList.remove('isActive')
-      } catch (error) {
-        throw Error
-      }
-    }
-
-    /**
-     * Window for application.
-     *
-     */
     weatherWindow () {
       try {
-        this.homeElement.style.display = 'none'
-        this.weatherElement.style.display = 'block'
         this.unitConverterElement.style.display = 'none'
+        this.weatherElement.style.display = 'block'
 
-        this.weatherLiElement.classList.remove('isActive')
         this.weatherLiElement.classList.add('isActive')
         this.unitConverterLiElement.classList.remove('isActive')
       } catch (error) {
@@ -150,11 +107,9 @@ customElements.define('my-custom-window-app',
      */
     converterWindow () {
       try {
-        this.homeElement.style.display = 'none'
         this.weatherElement.style.display = 'none'
         this.unitConverterElement.style.display = 'block'
 
-        this.weatherLiElement.classList.remove('isActive')
         this.weatherLiElement.classList.remove('isActive')
         this.unitConverterLiElement.classList.add('isActive')
       } catch (error) {
