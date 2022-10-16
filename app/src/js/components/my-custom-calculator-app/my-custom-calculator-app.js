@@ -94,7 +94,7 @@ template.innerHTML = `
 /**
  * Define custom element.
  */
-customElements.define('my-custom-converter-app',
+customElements.define('my-custom-calculator-app',
   /**
    *
    */

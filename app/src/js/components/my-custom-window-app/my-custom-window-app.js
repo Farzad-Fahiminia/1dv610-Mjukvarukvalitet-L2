@@ -8,6 +8,7 @@
 import '../my-custom-home-app/index.js'
 import '../my-custom-weather-app/index.js'
 import '../my-custom-temp-converter-app/index.js'
+import '../my-custom-calculator-app/index.js'
 
 /**
  * Define template.
@@ -22,7 +23,8 @@ template.innerHTML = `
      }
 
      .weather-element,
-     .converter-element {
+     .converter-element,
+     .calculator-element {
       display: none;
      }
 
@@ -44,6 +46,9 @@ template.innerHTML = `
     </div>
     <div class="converter-element">
       <my-custom-converter-app id="converter"></my-custom-converter-app>
+    </div>
+    <div class="calculator-element">
+      <my-custom-calculator-app id="calculator"></my-custom-calculator-app>
     </div>
 
    </div>
@@ -71,14 +76,17 @@ customElements.define('my-custom-window-app',
       this.homeApp = document.querySelector('#home')
       this.weatherApp = document.querySelector('#weather')
       this.unitConverterApp = document.querySelector('#converter')
+      this.calculatorApp = document.querySelector('#calculator')
 
       this.homeLiElement = document.querySelector('#home-li')
       this.weatherLiElement = document.querySelector('#weather-li')
       this.unitConverterLiElement = document.querySelector('#converter-li')
+      this.calculatorLiElement = document.querySelector('#calculator-li')
 
       this.homeElement = this.shadowRoot.querySelector('.home-element')
       this.weatherElement = this.shadowRoot.querySelector('.weather-element')
       this.unitConverterElement = this.shadowRoot.querySelector('.converter-element')
+      this.calculatorElement = this.shadowRoot.querySelector('.calculator-element')
 
       this.homeApp.addEventListener('click', (event) => {
         event.preventDefault()
@@ -104,12 +112,20 @@ customElements.define('my-custom-window-app',
         // this.unitConverterElement.style.display = 'block'
       })
 
+      this.calculatorApp.addEventListener('click', (event) => {
+        event.preventDefault()
+        this.calculatorWindow()
+        console.log('Click on calculator')
+        // this.weatherElement.style.display = 'none'
+        // this.unitConverterElement.style.display = 'block'
+      })
+
       console.log(this.weatherApp)
       console.log(this.unitConverterApp)
     }
 
     /**
-     * Window for application.
+     * Window for home.
      *
      */
     homeWindow () {
@@ -117,17 +133,19 @@ customElements.define('my-custom-window-app',
         this.homeElement.style.display = 'block'
         this.weatherElement.style.display = 'none'
         this.unitConverterElement.style.display = 'none'
+        this.calculatorElement.style.display = 'none'
 
         this.weatherLiElement.classList.add('isActive')
         this.weatherLiElement.classList.remove('isActive')
         this.unitConverterLiElement.classList.remove('isActive')
+        this.calculatorLiElement.classList.remove('isActive')
       } catch (error) {
         throw Error
       }
     }
 
     /**
-     * Window for application.
+     * Window for weather.
      *
      */
     weatherWindow () {
@@ -135,17 +153,19 @@ customElements.define('my-custom-window-app',
         this.homeElement.style.display = 'none'
         this.weatherElement.style.display = 'block'
         this.unitConverterElement.style.display = 'none'
+        this.calculatorElement.style.display = 'none'
 
         this.weatherLiElement.classList.remove('isActive')
         this.weatherLiElement.classList.add('isActive')
         this.unitConverterLiElement.classList.remove('isActive')
+        this.calculatorLiElement.classList.remove('isActive')
       } catch (error) {
         throw Error
       }
     }
 
     /**
-     * Window for application.
+     * Window for converter.
      *
      */
     converterWindow () {
@@ -153,10 +173,32 @@ customElements.define('my-custom-window-app',
         this.homeElement.style.display = 'none'
         this.weatherElement.style.display = 'none'
         this.unitConverterElement.style.display = 'block'
+        this.calculatorElement.style.display = 'none'
 
         this.weatherLiElement.classList.remove('isActive')
         this.weatherLiElement.classList.remove('isActive')
         this.unitConverterLiElement.classList.add('isActive')
+        this.calculatorLiElement.classList.remove('isActive')
+      } catch (error) {
+        throw Error
+      }
+    }
+
+    /**
+     * Window for calculator.
+     *
+     */
+    calculatorWindow () {
+      try {
+        this.homeElement.style.display = 'none'
+        this.weatherElement.style.display = 'none'
+        this.unitConverterElement.style.display = 'none'
+        this.calculatorElement.style.display = 'block'
+
+        this.weatherLiElement.classList.remove('isActive')
+        this.weatherLiElement.classList.remove('isActive')
+        this.unitConverterLiElement.classList.remove('isActive')
+        this.calculatorLiElement.classList.add('isActive')
       } catch (error) {
         throw Error
       }
