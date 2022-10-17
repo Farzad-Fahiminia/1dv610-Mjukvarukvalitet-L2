@@ -37,8 +37,11 @@ Example outprint:
 
 ## How to use
 
-// 1. Screenshot of front page. Describe how to navigate.
-// 2. Screenshot of weather page. Describe how to type in a city name.
+![Screenshot of front page](img/the_weather_app-front.png)
+1. Navigate to different parts by using the menu links (Main Menu) to the left.
+
+![Screenshot of weather page](img/the_weather_app-weather.png)
+2. Se the current weather and descriptions by typeing in a city name in the text field and clicking 'Search Weather'-button.
 
 <hr>
 
