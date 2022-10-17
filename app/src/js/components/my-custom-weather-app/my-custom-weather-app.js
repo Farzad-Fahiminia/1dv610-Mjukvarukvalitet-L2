@@ -23,10 +23,6 @@ template.innerHTML = `
        box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
      }
 
-     .my-custom-wrapper {
-       position: relative;
-     }
-
      input {
        padding: 15px;
        border-radius: 5px;
@@ -127,7 +123,6 @@ customElements.define('my-custom-weather-app',
 
       this.api_key = 'a6533ce007aa11cf448d02673c8c8a8f'
       this.weatherUrlImg = 'http://openweathermap.org/img/wn/'
-      // this.weatherImg = '10d@2x.png'
 
       this.getWeather()
     }
@@ -147,11 +142,6 @@ customElements.define('my-custom-weather-app',
           }
         })
         data = await data.json()
-        // console.log(data)
-        // console.log(data.list[0].main.temp)
-        // console.log(this.locationTextField.value)
-        // console.log(this.weatherUrlImg + data.list[0].weather[0].icon)
-
         this.locationOutprint.textContent = data.city.name
         this.latitudeLongitude.textContent = `Latitude: ${data.city.coord.lat}, Longitude: ${data.city.coord.lon}`
         this.weatherImg.src = this.weatherUrlImg + data.list[0].weather[0].icon + '@2x.png'
