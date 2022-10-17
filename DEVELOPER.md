@@ -49,7 +49,7 @@ Nu borde du se startsidan på applikationen som bilden nedan.
 <b>Förväntad resultat</b>
 Du borde kunna se sidor som bilden nedan.
 
-![Screenshot of front page](img/the_weather_app-weather.png)
+![Screenshot of weather page](img/the_weather_app-weather.png)
 
 <hr>
 
@@ -66,7 +66,7 @@ Du borde kunna se sidor som bilden nedan.
 <b>Förväntad resultat</b>
 Du borde kunna se väderinformation om Kalmar.
 
-![Screenshot of front page](img/the_weather_app-weather-kalmar.png)
+![Screenshot of weather page](img/the_weather_app-weather-kalmar.png)
 
 <hr>
 
@@ -83,7 +83,7 @@ Du borde kunna se väderinformation om Kalmar.
 <b>Förväntad resultat</b>
 Du borde kunna se en temperatur på 73.4 ℉.
 
-![Screenshot of front page](img/the_weather_app-converter.png)
+![Screenshot of temperature converter page](img/the_weather_app-converter.png)
 
 <hr>
 
@@ -100,4 +100,4 @@ Du borde kunna se en temperatur på 73.4 ℉.
 <b>Förväntad resultat</b>
 Du borde se "City not found"-meddelandet.
 
-![Screenshot of front page](img/the_weather_app-weather-test.png)
+![Screenshot of weather page](img/the_weather_app-weather-test.png)
